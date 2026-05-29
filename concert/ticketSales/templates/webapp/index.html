@@ -123,8 +123,10 @@
                         When describing a concert, you can write about the musicians, the pieces played, the sound, the atmosphere, and how it made you feel.
                     </p>
                 </div>
-                <div class="col-6 img-fluit">
-                    <img src="../media/concertPhotos/newxt.jpg" alt="concert">
+                {% load static %}
+
+                <div class="col-6 img-fluid">
+                    <img src="{% static 'ticketSales/images/newxt.jpg' %}" alt="concert">
                 </div>
             </div>
 
@@ -132,23 +134,22 @@
 
         <div class="owl-carousel2">
             <div class="owl-carousel owl-theme">
-                <div class="item"><img src="../media/concertPhotos/1.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/2.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/3.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/4.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/5.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/6.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/7.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/8.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/9.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/10.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/11.jpg"></div>
-                <div class="item"><img src="../media/concertPhotos/12.jpg"></div>
+
+                <div class="item"><img src="{% static 'ticketSales/images/slide/1.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/2.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/3.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/4.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/5.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/6.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/7.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/8.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/9.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/10.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/11.jpg' %}"></div>
+                <div class="item"><img src="{% static 'ticketSales/images/slide/12.jpg' %}"></div>
 
             </div>
-
         </div>
-
     <!-- Most Played Section -->
         <div class="section most-played">
             <div class="container">
@@ -157,8 +158,12 @@
                         <h1 class="service-title"> Learn More about Concerts hear! <h1>
                             <p class="paragraph">It sounds like you're asking about traditional musical instruments or elements from various cultures, like the getar (possibly a variation of "guitar" or another instrument). Could you clarify what you mean by "getar"? Or if you're interested in a specific type of song or music from a particular culture, I'd be happy to provide some information on that! </p>
                         </div>
+                            {% load static %}
+
                             <div class="col-lg-6 fluitrun">
-                                <div class="item"><img src="../media/concertPhotos/2_3.jpg"></div>
+                                <div class="item">
+                                    <img src="{% static 'ticketSales/images/2_3.jpg' %}">
+                                </div>
                             </div>
 
                         </div>
