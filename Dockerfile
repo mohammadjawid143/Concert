@@ -13,4 +13,4 @@ COPY . /app/
 
 EXPOSE 8000
 
-CMD ["python", "concert/manage.py", "runserver", "0.0.0.0:8000"]
+CMD sh -c "python concert/manage.py migrate && python concert/manage.py runserver 0.0.0.0:8000"
