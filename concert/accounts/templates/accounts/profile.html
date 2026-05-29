@@ -1,0 +1,70 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}Profile: {{ profile.user.get_full_name }}{% endblock %}
+
+{% block main %}
+    <div class="bgcolor-re">
+        {% include "webapp/header.html" %}
+
+        <div class="container-profile-form">
+            <div class="wrap-register-form">
+                <div class=" text-center">
+
+                <!-- Profile Image -->
+                    <div class="imageprof mb-4">
+                        <div class="wrap-register-input11">
+                            {% if profile.ProfileImage %}
+                                <img src="{{ profile.ProfileImage.url }}" alt="Profile picture" class="img-fluid rounded-custom">
+                            {% else %}
+                                <img src="/static/images/default-profile.png" alt="Default picture" class="img-fluid rounded-custom">
+                            {% endif %}
+                        </div>
+                    </div>
+
+                <!-- User Name -->
+                    <h1 class="h4 user_pr">{{ profile.user.get_full_name }}</h1>
+                    <p class="user_pr">User: {{ profile.user.username }}</p>
+
+                <!-- User Info (Gender and Balance) -->
+                    <div class="row mt-4">
+                        <div class="col-12 col-md-6 mb-3">
+                            <p class="lead">
+                                <span class="fw-bold">Gender:</span> <span class="value_p">{{ profile.get_Gender_display }}</span>
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <p class="lead">
+                                <span class="fw-bold">Balance:</span> <span class="value_p">${{ profile.credit }}</span>
+                            </p>
+                        </div>
+                    </div>
+
+                <!-- Action Buttons (Edit, Home) -->
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" type="submit">
+                                        <a href="{% url 'profile_Edit' %}" class="login100-form-btn w-100">Edit User</a>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <div class="container-login100-form-btn">
+                                <div class="wrap-login100-form-btn">
+                                    <div class="login100-form-bgbtn"></div>
+                                    <button class="login100-form-btn" type="submit">
+                                        <a href="{% url 'home' %}" class="login100-form-btn w-100">Home</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

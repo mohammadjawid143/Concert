@@ -1,0 +1,144 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block main %}
+    <div class="bgcolor-re">
+        {% include "webapp/header.html" %}
+        <div class="container-register-form">
+            <div class="wrap-register-form">
+                <form method="POST" enctype="multipart/form-data" class="register-form validate-form">
+                    {% csrf_token %}
+
+                    <div class="reg">
+                        <span class="register-form-title p-b-26">
+                            Register
+                        </span>
+                    </div>
+
+                <!-- مرحله 1: اطلاعات شخصی -->
+                    <div id="step1">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="wrap-register-input validate-input">
+                                    {{ form.first_name }}
+                                    <span class="focus-register-input" data-placeholder="First Name"></span>
+                                    {% for error in form.first_name.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="wrap-register-input validate-input">
+                                    {{ form.last_name }}
+                                    <span class="focus-register-input" data-placeholder="Last Name"></span>
+                                    {% for error in form.last_name.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="wrap-register-input validate-input">
+                                    {{ form.email }}
+                                    <span class="focus-register-input" data-placeholder="Email"></span>
+                                    {% for error in form.email.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="wrap-register-input validate-input">
+                                    <label for="id_gender" class="input-label">Gender</label>
+                                    {{ form.gender }}
+                                    <span class="focus-register-input" data-placeholder=""></span>
+                                    {% for error in form.gender.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="wrap-register-input validate-input">
+                                    <i class="fa fa-user input-icon"></i>
+                                    {{ form.username }}
+                                    <span class="focus-register-input" data-placeholder="Username"></span>
+                                    {% for error in form.username.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="wrap-register-input validate-input">
+                                    <span class="btn-show-pass">
+                                        <i id="togglePassword" class="bi bi-eye"></i>
+                                    </span>
+                                    {{ form.password1 }}
+                                    <span class="focus-register-input" data-placeholder="Password"></span>
+                                    {% for error in form.password1.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="wrap-register-input validate-input">
+                                    <span class="btn-show-pass">
+                                        <i id="togglePassword" class="bi bi-eye"></i>
+                                    </span>
+                                    {{ form.password2 }}
+                                    <span class="focus-register-input" data-placeholder="Confirm Password"></span>
+                                    {% for error in form.password2.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div><br>
+                                <div class="wrap-register-input">
+                                    {{ form.credit }}
+                                    <span class="focus-register-input" data-placeholder="Credit"></span>
+                                    {% for error in form.credit.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="bottunsize">
+                                <div class="container-login100-form-btn">
+                                    <div class="wrap-login100-form-btn">
+                                        <div class="login100-form-bgbtn"></div>
+                                        <button type="button" class="login100-form-btn" onclick="goToStep2()">
+                                            Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center p-t-1151">
+                                <span class="txt1">
+                                    Already have an account?
+                                </span>
+                                <a class="txt2" href="{% url 'login' %}">
+                                    Login
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- مرحله 2: پروفایل -->
+                    <div id="step2" style="display: none;">
+                        <div class="wrap-register-input">
+                            <label class="input-label">Profile Image</label>
+                            {{ form.ProfileImage }}
+                            <span class="focus-register-input" data-placeholder=""></span>
+                            {% for error in form.ProfileImage.errors %}
+                                <p class="error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button type="submit" class="login100-form-btn">
+                                    Register
+                                </button>
+                            </div>
+                            <button type="button" class="login100-form-btn" onclick="skipProfile()">
+                                Skip
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

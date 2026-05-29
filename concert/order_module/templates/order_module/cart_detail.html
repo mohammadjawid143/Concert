@@ -1,0 +1,52 @@
+{% extends "ticketSales/layout.html" %}
+{% block title %}Your Cart{% endblock %}
+
+{% block main %}
+    <div class="bgcolor-re py-5">
+        <div class="container">
+            {% if order and details %}
+            <div class="container-register-form">
+                <h1 class="text-center text-white mb-4">Your Cart</h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr >
+                                <th class="text-white" scope="col">Concert Name</th>
+                                <th class="text-white" scope="col">Singer</th>
+                                <th class="text-white" scope="col">Location</th>
+                                <th class="text-white" scope="col">Price</th>
+                                <th class="text-white" scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for detail in details %}
+                            <tr>
+                                <td class="text-white">{{ detail.concert.name }}</td>
+                                <td class="text-white">{{ detail.concert.SingarName }}</td>
+                                <td class="text-white">{{ detail.seats.locationModel.name }}</td>
+                                <td class="text-white">${{ detail.final_price }}</td>
+                                <td>
+                                    <a href="{% url 'remove_from_cart' detail.id %}" class="btn btn-danger btn-sm">
+                                        Remove
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total-price-container text-center mt-4">
+                    <h3 class="text-white">Total Price: <span class="badge badge-primary">${{ order.total_price }}</span></h3>
+                    <a href="{% url 'checkout' %}" class="btn btn-success mt-2">
+                        <i class="fas fa-shopping-cart"></i> Proceed to Checkout
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center mt-4">
+                <p class="alert alert-info">Your cart is empty!</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

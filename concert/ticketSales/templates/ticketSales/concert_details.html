@@ -1,0 +1,67 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}Details {{ concertdetails.name }}{% endblock %}
+{% block head %}Concert Details{% endblock %}
+
+{% block main %}
+    <div class="bgcolor-re">
+        {% include "webapp/header.html" %}
+        <div class="container-register-form  col-md-4">
+            <div class="wrap-register-form">
+                <div class="concert-details">
+                    <div class="imageBox">
+                        <img src="{{ concertdetails.poster.url }}" class="imageedit" width="350px" height="400px">
+                    </div>
+                    <br>
+                    <table class="table table-hove1">
+                        <tbody class="table-group-divider2">
+                            <tr class="headtext">
+                                <th scope="col">Concert Name</th>
+                                <td>{{ concertdetails.name }}</td>
+                            </tr>
+                            <tr class="headtext">
+                                <th scope="col">Singer</th>
+                                <td>{{ concertdetails.SingarName }}</td>
+                            </tr>
+                            <tr class="headtext">
+                                <th scope="col">Duration</th>
+                                <td>{{ concertdetails.lenth }}</td>
+                            </tr>
+                            <tr class="headtext">
+                                <th scope="col">Available Seats</th>
+                                <td>{{ time.Seats }}</td>
+                            </tr>
+                            <tr class="headtext">
+                                <th scope="col">Price</th>
+                                <td>{{ concertdetails.price }}$</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn">
+                            {% if user.is_superuser%}
+                                <div class="login100-form-bgbtn"></div>
+                                <span>
+                                    <button onclick="addProductToOrder({{ concertdetails.id }})" class="login100-form-btn">
+                                        <a href="{% url 'Edit' concertdetails.id %}" class="login100-form-btn w-100">Edit Concert</a>
+                                    </button>
+                                </span>
+                                </div>
+                            {%else%}
+                                <div class="login100-form-bgbtn"></div>
+                                <span>
+                                    <button onclick="addProductToOrder({{ concertdetails.id }})" class="login100-form-btn">
+                                        <i class="fas fa-shopping-cart tn-icon"></i>
+                                        Add to your cart
+                                    </button>
+                                </span>
+                                </div>
+                            {%endif%}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

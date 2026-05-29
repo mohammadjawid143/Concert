@@ -1,0 +1,106 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}Profile Edit{% endblock %}
+{% block head %}Profile Edit{% endblock %}
+{% block main %}
+    <div class="bgcolor-ry">
+        {% include "webapp/header.html" %}
+        <div class="container-register-form">
+            <div class="wrap-register-form">
+                <form method="POST" enctype="multipart/form-data" class="register-form validate-form">
+                    {% csrf_token %}
+                    <div class="reg">
+                        <span class="register-form-title p-b-26">
+                            Profile Edit
+                        </span>
+                    </div>
+
+                    <div class="row">
+                    <!-- Left Column (Personal Info) -->
+                        <div class="col-md-6">
+                        <!-- First Name input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">First Name</label>
+                                {{ userEditForm.first_name }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in userEditForm.first_name.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        <!-- Last Name input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">Last Name</label>
+                                {{ userEditForm.last_name }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in userEditForm.last_name.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        <!-- Email input -->
+                            <div class="wrap-register-input validate-input">
+                                <label for="id_gender" class="input-label">Email</label>
+                                {{ userEditForm.email }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in userEditForm.email.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        <!-- Gender input -->
+                            <div class="wrap-register-input validate-input">
+                                <label for="id_gender" class="input-label">Gender</label>
+                                {{ profileEditForm.Gender }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in profileEditForm.Gender.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        <!-- Credit input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">Credit</label>
+                                {{ profileEditForm.credit }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                            </div>
+                        </div>
+                    <!-- Right Column (Profile Image) -->
+                        <div class="col-md-6">
+                            <div class="imageBox">
+                                {% if profileImage %}
+                                    <img src="{{ profileImage.url }}" alt="Profile Image" class="roundetl img-fluid mb-3" width="400" height="400">
+                                {% else %}
+                                    <p>No profile image available.</p>
+                                {% endif %}
+                            </div>
+
+                        <!-- Profile Image input -->
+
+                            <div class="slot">
+                                {{ profileEditForm.ProfileImage }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in profileEditForm.ProfileImage.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="bottunsize">
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" type="submit">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

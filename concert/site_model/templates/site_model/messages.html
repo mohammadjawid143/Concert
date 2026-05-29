@@ -1,0 +1,51 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block main %}
+    <div class="bgcol">
+        {% include "webapp/header.html" %}
+            <div class="container mt-5">
+                <h2 class="text-center mb-4">Messages for Admin</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered custom-table">
+                        <thead class="thead-dark custom-thead">
+                            <tr>
+                                <th>Number</th>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                                <th>Sent At</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for message in messages %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ message.name }}</td>
+                                <td>{{ message.surname }}</td>
+                                <td>{{ message.email }}</td>
+                                <td>{{ message.subject }}</td>
+                                <td>{{ message.message }}</td>
+                                <td>{{ message.sent_at|date:"Y-m-d H:i:s" }}</td>
+                                <td>
+                                    <form action="{% url 'delete_message' message.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7" class="text-center">No messages found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+{% endblock %}

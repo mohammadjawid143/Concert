@@ -1,0 +1,64 @@
+{% extends "ticketSales/layout.html" %}
+{% block title %}Concert List{% endblock %}
+{%block head %} Concert List {%endblock%}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                {% if concertlist %}
+                    <p class="lead">Number of Existing Concerts: {{ concertcount }}</p>
+                    <form action="" method="GET">
+                        <div class="input-group">
+                            <div class="form-outline" data-mdb-input-init>
+                                {{ searchFrom }}
+                            </div>
+                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    </form>
+                    <div class="row">
+                        {% for concert in concertlist %}
+                            <div class="col-md-2 mb-4">
+                                <a href="/ticketSales/details/{{ concert.id}}">
+                                    <div class="card shadow-sm">
+                                        <img src="{{ concert.poster.url }}" alt="{{ concert.name }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ concert }}</h5>
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#concertModal{{ forloop.counter }}">
+                                                View Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </a>
+                <!-- Modal -->
+                                <div class="modal fade" id="concertModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="concertModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="concertModalLabel{{ forloop.counter }}">{{ concert }}</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Details about the concert can go here. You can include information like date, time, location, and any other relevant details.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {%elif not concert %}
+                    <p>this concert you enter didn't exist.</p>
+                {% else %}
+                    <p>No concerts available at this time.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

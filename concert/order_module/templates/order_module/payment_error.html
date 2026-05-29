@@ -1,0 +1,9 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block main %}
+<div class="container text-center">
+    <h2 class="my-4 text-danger">خطا در پرداخت</h2>
+    <p>متأسفانه پرداخت شما انجام نشد. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.</p>
+    <a href="{% url 'cart_detail' %}" class="btn btn-warning">بازگشت به سبد خرید</a>
+</div>
+{% endblock %}

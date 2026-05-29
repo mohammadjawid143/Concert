@@ -1,0 +1,190 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}concert {{ concertdetails.name }} {% endblock %}
+
+{% block main %}
+
+    <div class="bgcolor_main">
+        {% include "webapp/header.html" %}
+
+    <!-- Main Banner -->
+        <div class="main-banner">
+            <div class="container local">
+                <div class="row">
+                    <div class="col-lg-6 align-self-center">
+                        <div class="caption header-text">
+                            <h6>Welcome to MJTCh </h6>
+                            <h2>BEST LISTING CONCERT SITE EVER!</h2>
+                            <p>Experience an unforgettable night of live music and amazing performances. Get your tickets now and be part of the excitement!</p>
+                            <p class="roboto-light">Number of Existing Concerts: {{ concertcount }}</p>
+
+                        <!-- Search Form -->
+                            <div class="search-input">
+                                {% if concertlist %}
+                                    <form id="search" action="#" method="GET">
+                                        {{ searchFrom }}
+                                        <button role="button">Search Now</button>
+                                    </form>
+                                {% else %}
+                                    <p>No concerts available at this time.</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-image">
+                            <img src="static/ticketSales/images/pea.png" alt="concert image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Famous Concerts Section -->
+        <div class="section trending">
+            <div class="container load">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-heading">
+                            <div class="foct">
+                                <br>
+                                <h6>Last </h6>
+                                <h2 class="heading">Famous Concerts</h2>
+                            </div>
+                        </div>
+                    </div>
+                    {% if concertlist %}
+                        {% for concert in concertlist %}
+                            <div class=" col-lg-3 col-md-6">
+                                <div class="item cart">
+                                    <a class="linslinks" href="/ticketSales/details/{{ concert.id }}">
+                                        <div class="thumb">
+                                            <img src="{{ concert.poster.url }}" alt="{{ concert.name }}">
+                                        </div>
+                                        <div class="down-content">
+                                            <h4>{{ concert.name }}</h4>
+                                        </div>
+                                        {% if user.is_authenticated%}
+                                            {% if user.is_superuser%}
+                                                <div class="down-content">
+                                                    <div class="btn btn-danger rounded-pill">
+                                                        Click for Edit Ticket
+                                                    </div>
+                                                </div>
+                                            {%else%}
+                                                <div class="down-content">
+                                                    <div class="btn btn-danger rounded-pill">
+                                                        Click for Buy Ticket
+                                                    </div>
+                                                </div>
+                                            {%endif%}
+                                        {%endif%}
+                                    </a>
+                                </div>
+                            </div>
+
+                <!-- Modal for each concert -->
+                            <div class="modal fade" id="concertModal{{ forloop.counter }}" tabindex="-1" aria-labelledby="concertModalLabel{{ forloop.counter }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="concertModalLabel{{ forloop.counter }}">{{ concert.name }}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p><strong>Date:</strong> {{ concert.date }}</p>
+                                            <p><strong>Location:</strong> {{ concert.location }}</p>
+                                            <p>{{ concert.description }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No concerts available at this time.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        <div class="container">
+            <hr>
+            <div class="row mt-5 pt-5">
+
+                <div class="col-6 img-fluit">
+                    <h5 class="service-title">
+                        Concert Discriptions
+                    </h5>
+                    <p class="paragraph">
+                        Concert is a live music performance in front of an audience. Concerts can be performed by a single musician, or by a group of musicians, such as a band, choir, or orchestra. They can take place in many different settings, including private homes, nightclubs, concert halls, amphitheaters, parks, arenas, and stadiums.
+                        When describing a concert, you can write about the musicians, the pieces played, the sound, the atmosphere, and how it made you feel.
+                    </p>
+                </div>
+                <div class="col-6 img-fluit">
+                    <img src="../media/concertPhotos/newxt.jpg" alt="concert">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="owl-carousel2">
+            <div class="owl-carousel owl-theme">
+                <div class="item"><img src="../media/concertPhotos/1.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/2.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/3.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/4.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/5.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/6.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/7.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/8.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/9.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/10.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/11.jpg"></div>
+                <div class="item"><img src="../media/concertPhotos/12.jpg"></div>
+
+            </div>
+
+        </div>
+
+    <!-- Most Played Section -->
+        <div class="section most-played">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1 class="service-title"> Learn More about Concerts hear! <h1>
+                            <p class="paragraph">It sounds like you're asking about traditional musical instruments or elements from various cultures, like the getar (possibly a variation of "guitar" or another instrument). Could you clarify what you mean by "getar"? Or if you're interested in a specific type of song or music from a particular culture, I'd be happy to provide some information on that! </p>
+                        </div>
+                            <div class="col-lg-6 fluitrun">
+                                <div class="item"><img src="../media/concertPhotos/2_3.jpg"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+    <!-- Categories Section -->
+                <div class="section categories">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <div class="section-heading">
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% include "webapp/footer.html" %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+{% endblock %}

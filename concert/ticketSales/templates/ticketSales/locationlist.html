@@ -1,0 +1,35 @@
+{% extends "ticketSales/layout.html" %}
+{% block title %}Location List{% endblock %}
+{% block head %}Places Where Concerts Start{% endblock %}
+
+{% block main %}
+    <div class="container mt-4">
+    <!-- Header for the Locations Section -->
+        <div class="row text-white p-3 rounded mb-4 headnn">
+            <div class="col-md-3">
+                <h4 class="mb-0">Name of Concert Salon</h4>
+            </div>
+            <div class="col-md-9">
+                <h4 class="mb-0">Address</h4>
+            </div>
+        </div>
+    <!-- Check if location list exists -->
+        {% if locationlist %}
+            {% for location in locationlist %}
+                <div class="row location p-3 mb-3 border rounded shadow-sm">
+                    <div class="col-md-3">
+                        <h5 class="mb-1">{{ location.name }}</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="mb-0">{{ location.address }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                No locations available...
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

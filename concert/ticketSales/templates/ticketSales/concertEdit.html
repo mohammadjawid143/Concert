@@ -1,0 +1,93 @@
+{% extends "ticketSales/layout.html" %}
+{% block title %}Edit {{ concert.name }}{% endblock %}
+{% block head %}Edit Concert{% endblock %}
+
+{% block main %}
+    <div class="bgcolor-re">
+        {% include "webapp/header.html" %}
+        <div class="container-register-form">
+            <div class="wrap-register-form">
+                <form method="POST" enctype="multipart/form-data" class="register-form validate-form">
+                    {% csrf_token %}
+                    <div class="reg">
+                        <span class="register-form-title p-b-26">
+                            Edit Concert
+                        </span>
+                    </div>
+                    <div class="row">
+                    <!-- Left Column (Concert Info) -->
+                        <div class="col-md-6">
+                            <div class="pad">
+                            <!-- Concert Name input -->
+                                <div class="wrap-register-input validate-input">
+                                    <label class="input-label">Concert Name</label>
+                                    {{ concertForm.name }}
+                                    <span class="focus-register-input" data-placeholder=""></span>
+                                    {% for error in concertForm.name.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        <!-- Singer Name input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">Singer Name</label>
+                                {{ concertForm.SingarName }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in concertForm.SingarName.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        <!-- Concert Duration input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">Concert Duration</label>
+                                {{ concertForm.lenth }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in concertForm.lenth.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        <!-- Concert Price input -->
+                            <div class="wrap-register-input validate-input">
+                                <label class="input-label">Ticket Price</label>
+                                {{ concertForm.price }}
+                                <span class="focus-register-input" data-placeholder=""></span>
+                                {% for error in concertForm.price.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    <!-- Right Column (Poster Image) -->
+                        <div class="col-md-6">
+                        <!-- Poster Image input -->
+                            <div class="wrap-register-input validate-input">
+
+                                <div class="slot">
+                                    <h3 class="h4 user_pr">Poster Image</h3>
+                                    <div class="imageBox">
+                                        <img src="{{ posterImage.url }}" alt="Concert Poster">
+                                    </div>
+                                    {{ concertForm.poster }}
+                                    <span class="focus-register-input" data-placeholder=""></span>
+                                    {% for error in concertForm.poster.errors %}
+                                        <p class="error">{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Save Button -->
+                    <div class="bottunsize">
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" type="submit">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

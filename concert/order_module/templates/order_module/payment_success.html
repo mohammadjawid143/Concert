@@ -1,0 +1,9 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block main %}
+<div class="container text-center">
+    <h2 class="my-4 text-success">پرداخت موفق</h2>
+    <p>پرداخت شما با موفقیت انجام شد. شماره سفارش شما: <strong>{{ order.id }}</strong></p>
+    <a href="/" class="btn btn-primary">بازگشت به صفحه اصلی</a>
+</div>
+{% endblock %}

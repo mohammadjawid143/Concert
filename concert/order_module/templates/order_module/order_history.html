@@ -1,0 +1,30 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block main %}
+<div class="container">
+    <h2 class="my-4">تاریخچه سفارش‌ها</h2>
+
+    {% if orders %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>شماره سفارش</th>
+                    <th>تاریخ پرداخت</th>
+                    <th>مجموع قیمت</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.payment_date|date:"Y-m-d H:i" }}</td>
+                    <td>{{ order.details.all|sum:'final_price' }} تومان</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="alert alert-info">شما هیچ سفارشی ثبت نکرده‌اید.</p>
+    {% endif %}
+</div>
+{% endblock %}

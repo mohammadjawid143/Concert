@@ -1,0 +1,70 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block main %}
+
+    <div class="bgcolor">
+        {% include "webapp/header.html" %}
+
+        <div class="">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <form class="login100-form validate-form" action="{% url 'login' %}" method="POST">
+
+                        <span class="login100-form-title p-b-26">
+                            Login
+                        </span>
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+                        <p style="color: red ;">{{username}}{{ errorMessage }}</p>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter username">
+                            <i class="fa fa-user input-icon"></i> <!-- Font Awesome user icon -->
+                            <input class="input100" type="text" name="username" autocomplete="off" required>
+                            <span class="focus-input100" data-placeholder="Username"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Enter password">
+                            <span class="btn-show-pass">
+                                <i id="togglePassword" class="bi bi-eye"></i>
+                            </span>
+                            <input class="input100" type="password" id="password" name="password" autocomplete="off" required>
+                            <span class="focus-input100" data-placeholder="Password"></span>
+                        </div>
+
+
+
+                        <div class="container-login100-form-btn">
+                            <div class="wrap-login100-form-btn">
+                                <div class="login100-form-bgbtn"></div>
+                                <button class="login100-form-btn" type="submit">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-center p-t-115">
+                            <a class="txt2" href="{% url 'password_reset' %}">
+                                Forget_Password
+                            </a>
+                            <div class="txt1_1">
+                                <span class="txt1">
+                                    Don’t have an account?
+                                </span>
+                                <a class="txt2" href="{% url 'register' %}">
+                                    Sign Up
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

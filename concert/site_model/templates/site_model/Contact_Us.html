@@ -1,0 +1,88 @@
+{% extends "ticketSales/layout.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block main %}
+<div class="bgcol">
+  {% include "webapp/header.html" %}
+
+  <!-- Contact Section -->
+  <div class="contact-page section">
+    <div class="container Contact">
+      <div class="row">
+        <!-- Left Column: Information -->
+        <div class="col-lg-6 align-self-center">
+          <div class="left-text">
+            <div class="section-heading">
+              <h6 class="Contact2">Contact Us</h6>
+              <h2>We'd Love to Hear From You!</h2>
+            </div>
+            <p>If you have any questions, suggestions, or need assistance, feel free to get in touch with us. We're here to help!</p>
+            <ul class="contact-info">
+              <li Class="label2"><i class="fa fa-map-marker-alt"></i> <span Class="label1">Address:</span> {{About.0.address}} </li>
+              <li Class="label2"><i class="fa fa-phone-alt"></i> <span Class="label1">Phone:</span> {{About.0.phone}} </li>
+              <li Class="label2"><i class="fa fa-envelope"></i> <span Class="label1">Email:</span> {{About.0.email}} </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Form -->
+        <div class="col-lg-6">
+          <div class="right-content">
+            <div class="row">
+              <div class="col-lg-12">
+                <form id="contact-form" action="{% url 'send_message' %}" method="post">
+                  {% csrf_token %}
+                  <div class="row">
+                    <!-- Name -->
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input class="filds" type="text" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                      </fieldset>
+                    </div>
+                    <!-- Surname -->
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input class="filds" type="text" name="surname" id="surname" placeholder="Your Surname..." autocomplete="on" required>
+                      </fieldset>
+                    </div>
+                    <!-- Email -->
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input class="filds" type="email" name="email" id="email" placeholder="Your E-mail..." required>
+                      </fieldset>
+                    </div>
+                    <!-- Subject -->
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input class="filds" type="text" name="subject" id="subject" placeholder="Subject..." autocomplete="on">
+                      </fieldset>
+                    </div>
+                    <!-- Message -->
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <textarea class="filds" name="message" id="message" placeholder="Your Message..." required></textarea>
+                      </fieldset>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class = "">
+                      <div class="col-lg-12">
+                        <fieldset>
+                          <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                        </fieldset>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "webapp/footer.html" %}
+</div>
+
+{% endblock %}
